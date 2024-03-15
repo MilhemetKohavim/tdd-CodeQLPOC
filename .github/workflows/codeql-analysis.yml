@@ -22,7 +22,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest   
+    runs-on: windows-latest   
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
@@ -35,7 +35,7 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build --configuration Release
         
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
