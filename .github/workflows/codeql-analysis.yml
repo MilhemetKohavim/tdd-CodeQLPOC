@@ -21,15 +21,9 @@ on:
   
 
 jobs:
-  example-matrix:
-   runs-on: ubuntu-latest
-   
-   strategy:
-      matrix:
-    # Override automatic language detection by changing the list below.
-    # Supported options are listed in a comment in the default workflow.
-       language: ['csharp']        
-   steps:
+  build:
+    runs-on: ubuntu-latest   
+    steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -49,7 +43,7 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
-            language: ${{matrix.language}} 
+            languages: csharp
 
 
 
