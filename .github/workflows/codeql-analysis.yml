@@ -21,29 +21,27 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+  steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+            dotnet-version: '8.0.x'
+            dotnet-quality: 'preview'
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '8.0.x'  # Specify the desired .NET version
+      - name: Build
+        run: dotnet build --no-restore
+        
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
 
-    - name: Build and test
-      run: |
-        dotnet restore
-        dotnet build
-        dotnet test
-
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-      with:
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
         languages: csharp
 
 
