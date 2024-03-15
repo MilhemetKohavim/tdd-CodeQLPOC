@@ -18,11 +18,18 @@ on:
     branches: [ "master" ]
   schedule:
     - cron: '15 5 * * 3'
+  
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
+  example-matrix:
+   runs-on: ubuntu-latest
+   
+   strategy:
+      matrix:
+    # Override automatic language detection by changing the list below.
+    # Supported options are listed in a comment in the default workflow.
+       language: ['csharp']        
+   steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -42,7 +49,7 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
-            languages: csharp
+            language: ${{matrix.language}} 
 
 
 
