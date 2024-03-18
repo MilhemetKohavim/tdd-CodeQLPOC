@@ -27,6 +27,7 @@ app.UseExceptionHandler(options: new ExceptionHandlerOptions { AllowStatusCode40
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("test"))
 {
+    string password="123456";
     // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/handle-errrors
     app.UseDeveloperExceptionPage();
 
