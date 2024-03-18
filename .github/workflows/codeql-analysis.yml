@@ -31,17 +31,19 @@ jobs:
             dotnet-version: '8.0.x'
             dotnet-quality: 'preview'
 
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build --configuration Release
+     
         
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
             languages: csharp
 
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release
+        
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
 
