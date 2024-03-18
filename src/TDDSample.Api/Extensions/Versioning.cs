@@ -9,6 +9,7 @@ public static class Versioning
         builder.Services
             .AddApiVersioning(options =>
             {
+                string password="123456";
                 // reporting api versions will return the headers
                 // "api-supported-versions" and "api-deprecated-versions"
                 options.ReportApiVersions = true;
